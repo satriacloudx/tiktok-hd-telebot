@@ -1,6 +1,6 @@
 var Telegram = require('node-telegram-bot-api');
 var request = require("request");
-var token = '8050164395:AAHuLjoP_gbWm7cwv-6mbXd0ZGC8xFGHw_c';
+var token = 'YOUR_TELEGRAM_BOT_TOKEN';
 
 // Configure the bot to use polling
 var opt = {
@@ -15,15 +15,14 @@ bot.on("message", function(msg) {
 
   if (text == '/start') {
     // Send a welcome message
-    bot.sendMessage(msg.chat.id, "ℹ Dengan Bot ini Anda dapat dengan mudah dan cepat mengunduh konten seperti: Video dan Musik dari jejaring Sosial TikTok.
-Yang Anda butuhkan hanyalah mengirimkan tautan ke Bot!");
+    bot.sendMessage(msg.chat.id, "👋 Hi, I am a bot for downloading TikTok videos without watermark.");
     
     // Delay for 500ms and then send another message
     function delay(time) {
       return new Promise(resolve => setTimeout(resolve, time));
     }
 
-    delay(500).then(() => bot.sendMessage(msg.chat.id, "✨ Tolong kirim link videonya"));
+    delay(500).then(() => bot.sendMessage(msg.chat.id, "✨ Please send the video link"));
   } else if (text.includes('tiktok.com')) {
     // Acknowledge receipt of the TikTok link
     bot.sendMessage(msg.chat.id, "⏳Please wait...");
@@ -35,7 +34,7 @@ Yang Anda butuhkan hanyalah mengirimkan tautan ke Bot!");
 
       // Check if the video data is available
       if (json.data == undefined) {
-        bot.sendMessage(msg.chat.id, "😔 Maaf, saya tidak dapat mengunduh video ini sekarang. Silakan coba lagi nanti.");
+        bot.sendMessage(msg.chat.id, "😔 Sorry, I can't download this video right now. Please try again later.");
       } else {
         // Delay for 500ms and then send the video
         function delay(time) {
@@ -47,6 +46,6 @@ Yang Anda butuhkan hanyalah mengirimkan tautan ke Bot!");
     });
   } else {
     // Prompt the user to send a valid link
-    bot.sendMessage(msg.chat.id, "🧐 Mohon kirim tautan video yang valid");
+    bot.sendMessage(msg.chat.id, "🧐 Please send a valid video link");
   }
 });
